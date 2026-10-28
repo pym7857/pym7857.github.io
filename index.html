@@ -1,288 +1,362 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/my-style.css" rel="stylesheet" media="screen">
-    <title>Youngmin Park</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youngmin Park · AI Engineer</title>
+  <meta name="description" content="박영민 · LS ELECTRIC AI Engineer, 생성형 AI 서비스 PL. 현업 용어를 이해하는 AI 서비스를 설계하고 개발합니다.">
+  <meta property="og:title" content="Youngmin Park · AI Engineer">
+  <meta property="og:description" content="현업 용어를 이해하는 AI 서비스를 설계하고 개발합니다.">
+  <meta property="og:image" content="https://pym7857.github.io/assets/img/ympark_removebg.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --bg: #f4f6fa; --card: #ffffff; --ink: #141821; --sub: #4b5262; --muted: #8a91a0;
+      --line: #e3e7ee; --navy: #1f3d7a; --blue: #2b62c4; --blue-soft: #e8f0fc;
+      --violet: #6a4bbf; --violet-soft: #f0ebfb; --hl: #fff3b0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1218; --card: #171b23; --ink: #eef1f6; --sub: #b4bbc8; --muted: #7e8696;
+        --line: #2a303b; --navy: #8fb0ff; --blue: #7ea6f5; --blue-soft: #1d2a42;
+        --violet: #b9a2ff; --violet-soft: #272040; --hl: #5a4b10;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      font-size: 16px; line-height: 1.65; letter-spacing: -0.01em; word-break: keep-all; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+    nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+    nav .brand { font-weight: 800; color: var(--ink); }
+    nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; font-size: 14px; }
+    nav ul a { color: var(--sub); }
+    @media (max-width: 640px) { nav ul { display: none; } }
+
+    .hero { padding: 64px 0 40px; display: grid; grid-template-columns: 1fr 220px; gap: 32px; align-items: center; }
+    .hero .eyebrow { font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: .08em; }
+    .hero h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.25; margin: 10px 0 14px; letter-spacing: -0.03em; }
+    .hero .who { font-size: 18px; font-weight: 700; }
+    .hero .who span { color: var(--sub); font-weight: 500; font-size: 15px; margin-left: 8px; }
+    .hero .btns { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: 14px; }
+    .btn.primary { background: var(--navy); color: #fff; }
+    @media (prefers-color-scheme: dark) { .btn.primary { color: #0f1218; } }
+    .btn.ghost { border: 1.5px solid var(--line); color: var(--ink); background: var(--card); }
+    .btn:hover { text-decoration: none; opacity: .9; }
+    .photo { width: 220px; height: 220px; border-radius: 50%; background: var(--blue-soft); overflow: hidden; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 700px) { .hero { grid-template-columns: minmax(0,1fr); } .photo { width: 160px; height: 160px; order: -1; } }
+    .hero > div, .grid3 > *, .two > *, .year > *, .press > * { min-width: 0; }
+    body { overflow-x: hidden; }
+
+    section { padding: 36px 0; }
+    .sec-title { font-size: 13px; font-weight: 800; color: var(--blue); letter-spacing: .1em; margin: 0 0 6px; }
+    h2 { font-size: 26px; margin: 0 0 18px; letter-spacing: -0.02em; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    @media (max-width: 760px) { .grid3 { grid-template-columns: minmax(0,1fr); } }
+    .card h3 { margin: 0 0 6px; font-size: 17px; }
+    .card p { margin: 0; color: var(--sub); font-size: 15px; }
+
+    .feature-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+    .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); }
+    .meta { color: var(--muted); font-size: 14px; }
+
+    .flow { display: flex; align-items: stretch; gap: 8px; margin: 18px 0 6px; flex-wrap: wrap; }
+    .flow .node { flex: 1 1 120px; border-radius: 12px; padding: 12px; text-align: center; background: var(--bg); }
+    .flow .node b { display: block; font-size: 15px; }
+    .flow .node span { display: block; font-size: 13px; color: var(--sub); }
+    .flow .ai { background: var(--violet-soft); } .flow .ai b { color: var(--violet); }
+    .flow .code { background: var(--blue-soft); } .flow .code b { color: var(--blue); }
+    .flow .arr { align-self: center; color: var(--muted); }
+    .legend { font-size: 13px; color: var(--sub); display: flex; gap: 14px; }
+    .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+    @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+    .step { border-left: 3px solid var(--line); padding: 4px 0 4px 14px; }
+    .step.now { border-left-color: var(--navy); }
+    .step .when { font-size: 12px; font-weight: 800; color: var(--muted); }
+    .step b { display: block; margin: 2px 0; }
+    .step p { margin: 0; font-size: 14px; color: var(--sub); }
+
+    .press { display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 640px) { .press { grid-template-columns: 1fr; } }
+    .press .src { font-weight: 800; font-size: 14px; color: var(--sub); }
+    .press .src small { display: block; font-weight: 500; color: var(--muted); }
+    .press h3 { font-size: 19px; margin: 0 0 10px; line-height: 1.4; }
+    .press blockquote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--navy); background: var(--bg); border-radius: 0 10px 10px 0; color: var(--sub); font-size: 15px; }
+    .press mark { background: var(--hl); color: inherit; padding: 0 2px; }
+
+    .year { display: grid; grid-template-columns: 90px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+    .year:first-of-type { border-top: 0; }
+    .year .y { font-size: 22px; font-weight: 800; color: var(--navy); }
+    @media (max-width: 640px) { .year { grid-template-columns: 1fr; gap: 6px; } }
+    .proj { margin-bottom: 16px; }
+    .proj:last-child { margin-bottom: 0; }
+    .proj .t { font-weight: 700; }
+    .proj .d { color: var(--muted); font-size: 14px; margin-left: 6px; }
+    .proj ul { margin: 6px 0 0; padding-left: 18px; color: var(--sub); font-size: 15px; text-align: left; }
+    .proj li { margin: 2px 0; }
+
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+    .list { list-style: none; margin: 0; padding: 0; }
+    .list li { padding: 10px 0; border-top: 1px dashed var(--line); }
+    .list li:first-child { border-top: 0; }
+    .list .k { font-size: 13px; color: var(--muted); }
+    .list .v { font-weight: 600; }
+    .list .s { font-size: 14px; color: var(--sub); }
+    .skills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skills span { font-size: 14px; padding: 5px 11px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); }
+
+    footer { padding: 40px 0 60px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 20px; }
+  </style>
 </head>
-
-<style>
-    body {
-        background: #dadfec;
-    }
-
-    .main {
-        background: white !important;
-        border-radius: 20px;
-        padding: 40px;
-        margin-top: 20px;
-    }
-</style>
-
 <body>
-    <div class="container">
-        <div class="main">
-            <h1>
-                Youngmin Park <small>(박영민)</small>
-            </h1>
-            <div class="row">
-                <div class="col-sm-6">
-                    <p>
-                        1995.3.19 <br>
-                        S/W Developer & Data Scientist
-                    </p>
-                    <h4>Contact</h4>
-                    <p>
-                        <a href="mailto:screwym123@gmail.com">screwym123@gmail.com</a> (personal)<br>
-                        +82 10-2049-7699
-                    </p>
-                </div>
-                <div class="col-sm-6" align="middle">
-                    <img src="assets/img/ympark_removebg.png" class="img-responsive img-circle"
-                        style="background: #dadfec; width:60%;" alt="ympark">
-                </div>
-            </div>
-            <hr>
-            <p>
-                I am a passionate software developer and data scientist specializing in automation and data integration,
-                with a focus on AI-driven solutions and real-time data analysis.
-            </p>
-            <hr>
-            <div>
-                <h2>
-                    Work Experience
-                </h2>
-                <ul>
-                    <li style="color: grey;">
-                        <b style="color: black;">Data Scientist</b>, LS ELECTRIC (2021 ~ Now)
-                    </li>
-                    <li style="color: grey;">
-                        <b style="color: black;">Data Scientist Intern</b>, LS ELECTRIC (2020)
-                    </li>
-                </ul>
-            </div>
-            <hr>
-            <div>
-                <h2>
-                    Achievements and Awards
-                </h2>
-                <ul>
-                    <li style="color: grey;"><b style="color: black;">LG PRI Tech Day 전시회 출품작 선정 (AICC)</b>,
-                        (2024)</li>
-                    <li style="color: grey;"><b style="color: black;">LS 全 계열사 대상 Future Day Innovation LeaderShip 부문
-                            입상 (AICC)</b>, (2024)</li>
-                </ul>
-            </div>
-            <hr>
-            <div>
-                <h2>
-                    Projects
-                </h2>
-                <p>
-                    Please see below list
-                </p>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">2025</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p id="aicc">
-                                <b style="color:black;">AI 기반 DCIM(Data Center Infrastructure Management) 고도화</b>
-                                <span style="color:grey;">(25.4 ~ 25.9)</span><br>
-                            <ul>
-                                <li>시작 전</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="aicc">
-                                <b style="color:black;">경량언어모델 활용한 진단 AI Agent 개발</b>
-                                <span style="color:grey;">(25.1 ~ 25.9)</span><br>
-                            <ul>
-                                <li>AI Agent 도입을 통한 진단 솔루션(Condition Monitoring and Diagnostic System) 혁신</li>
-                                <li>On-prem 환경 경량화(small Large Language Model) 모델 적용</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="aicc">
-                                <b style="color:black;">HVTR 기술 문서 검토 자동화 AI Agent 개발</b>
-                                <span style="color:grey;">(25.3 ~ 25.10)</span><br>
-                            <ul>
-                                <li>HVTR 고객 사양서, 규격 문서 등 사용자가 원하는 항목을 검토 및 질의응답 하는 AI Agent를 개발하여, Global Customer 대응 위한 정확한 정보 전달을 하고 기술 검토에 소요되는 시간과 비용을 절감</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="aicc">
-                                <b style="color:black;">Global 현장 합리화 지원 AI Agent 개발</b>
-                                <span style="color:grey;">(25.4 ~ 25.10)</span><br>
-                            <ul>
-                                <li>해외사업장 및 협력사의 글로벌 경쟁력을 확보하고, 청주사업장 수준으로 Catch up 하기 위하여 FC(현장개선 전문가)를 육성하고자, 현장 합리화 자료를 활용한 AI Agent를 개발</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="aicc">
-                                <b style="color:black;">자동화 PLC 엔지니어링 AI Agent 개발</b>
-                                <span style="color:grey;">(25.4 ~ 25.10)</span><br>
-                            <ul>
-                                <li>자사의 PLC 소프트웨어 XG5000에 AI 기반 검색 엔진을 탑재하여, 사용자의 편의성을 개선하고 제품 경쟁력 강화함으로써 AI 활용 확대</li>
-                            </ul>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">2024</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p id="aicc">
-                                <b style="color:black;">기술상담센터 AICC (AI Contact Center) 기반 구축</b>
-                                <span style="color:grey;">(24.1 ~ 24.8)</span><br>
-                            <ul>
-                                <li>자동화 엔지니어링 고객 기술지원 사이트 <b>생성형AI기반 챗봇 개발(PM)</b></li>
-                                <ul>
-                                    <li>LS ELECTRIC <a href="https://sol.ls-electric.com/kr/ko/main"
-                                            target="_blank">솔루션스퀘어</a> 생성형AI RAG 챗봇(초/중급 기술문의) 개발 및 Beta
-                                        Open
-                                    </li>
-                                    <li>초/중급 난이도 기술문의 답변정확도 : 90% 달성</li>
-                                </ul>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="aicc">
-                                <b style="color:black;">LS ELECTRIC Product Lens 프로젝트 - LLM 기반 Smart Search 개발</b>
-                                <span style="color:grey;">(24.9 ~ 24.10)</span><br>
-                            <ul>
-                                <li>개요 : 자사의 Global 사업성과 향상을 위한 'Global DX Ideation'의 일환으로 AI 기반 제품 정보 서비스</li>
-                                <li>Smart Search : LLM 모델에 기반한 제품 정보 Q&A 기능</li>
-                                <ul>
-                                    <li>초/중/고급 난이도 기술문의 답변정확도 : 92.5% 달성</li>
-                                </ul>
-                            </ul>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">2023</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p id="carbon">
-                                <b>탄소배출 추적을 위한 데이터 통합</b>
-                                <span style="color:grey;">(23.5 ~ 23.11)</span><br>
-                            <ul>
-                                <li>전사 탄소배출 통합 대시보드 개발 목표</li>
-                                <li>사내 기간계 시스템 연결 및 데이터 파이프라인 구축 / 데이터 정합성 검증 작업 수행</li>
-                                <li>Microsoft Fabric 플랫폼 및 PySpark, SQL 활용</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="pltr">
-                                <b>Palantir : R&D Product Ontology 360 Overview (Foundry)</b>
-                                <span style="color:grey;">(23.3 ~ 23.4)</span><br>
-                            <ul>
-                                <li>팔란티어(Palantir) & LS ELECTRIC 협업 과제</li>
-                                <li>R&D Product 기획부터 개발, 생산, 매출, 서비스까지 전체 Life-Time을 조망할 수 있는 온토롤지 구축</li>
-                                <li>팔란티어 Foundry 플랫폼 및 PySpark, SQL 활용</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="pat-line-dashboard">
-                                <b>공정 라인 실시간 생산현황 대시보드 구축</b>
-                                <span style="color:grey;">(23.9 ~ 23.11)</span><br>
-                            <ul>
-                                <li>생산성 분석Assistant 기반 실시간 현황 대시보드 개발</li>
-                                <li>자사 솔루션 제품 (Smart Workbench) 경쟁력 강화 목표</li>
-                                <li>대시보드 실시간 업데이트를 위한 Docker Bind Mount 및 Plotly Dash 활용</li>
-                            </ul>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">2022</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p id="pat">
-                                <b>공정 라인 생산성 분석Assistant 개발</b>
-                                <span style="color:grey;">(22.2 ~ 22.11)</span><br>
-                            <ul>
-                                <li>공정 라인 동기화 작업대(Smart Workbench)의 실제 작업 이력을 활용</li>
-                                <li>LSE 천안사업장 인버터 생산라인(D36, D21) 대상, 과거 작업 트렌드 분석 및 작업자 생산성 비교 기능 제공</li>
-                                <li>LSE 천안사업장 스마트 셀 라인 (인버터 생산 : 작업자 + 로봇팔 생산 라인)(D15) 대상 추가 확대 적용</li>
-                                <li>Streamlit 프레임워크 활용한 웹앱 구성</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="robot-arm">
-                                <b>로봇팔 생산공정 데이터 분석</b>
-                                <span style="color:grey;">(22.5 ~ 22.11)</span><br>
-                            <ul>
-                                <li>야스카와社 로봇 기반 자동화 생산공정 라인의 설비 안정화 목표</li>
-                                <li>생산 데이터 기반 이상현상 탐지 알람 제공 시스템 구축</li>
-                                <li>UCL/LCL 및 클러스터링을 통한 CBM(Condition Based Monitoring)알람 시스템 구축</li>
-                            </ul>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
 
-                <h2>
-                    Patent
-                </h2>
-                <p>
-                    Please see below list
-                </p>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">2024</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p id="patent">
-                                <b>Advanced Document Retriever Engine (출원후 등록전)</b><br>
-                            <ul>
-                                <li>발명의 명칭(출원) : 생성형 인공지능 모델 기반 정보 제공 장치 및 정보 제공 방법</li>
-                                <li>출원번호: 10-2024-0194099</li>
-                                <li>출원일: 2024-12-23</li>
-                                <li>관리구분: 특허</li>
-                                <li>발명서등급: A</li>
-                            </ul>
-                            </p>
-                        </li>
-                        <li class="list-group-item">
-                            <p id="patent">
-                                <b>스마트팩토리 센서 출력과 연동된 고장 상담 시스템 (출원후 등록전)</b><br>
-                            <ul>
-                                <li>발명의 명칭(출원) : 생성형 인공지능 기반 정보 제공 장치, 이를 포함하는 정보 제공 시스템 및 정보 제공 방법</li>
-                                <li>출원번호: PCT/KR2024/012558</li>
-                                <li>출원일: 2024-08-22</li>
-                                <li>관리구분: 특허</li>
-                                <li>발명서등급: B</li>
-                            </ul>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Youngmin Park</a>
+    <ul>
+      <li><a href="#featured">대표 프로젝트</a></li>
+      <li><a href="#press">언론 보도</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#awards">수상 · 특허</a></li>
+      <li><a href="#contact">연락처</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">AI ENGINEER · 생성형 AI 서비스 PL</div>
+      <h1>현업 용어를 이해하는 AI 서비스를<br>설계하고 개발합니다</h1>
+      <div class="who">박영민 <span>Youngmin Park · LS ELECTRIC</span></div>
+      <p style="color:var(--sub); margin:12px 0 0; max-width:560px">
+        제조·전력 현장의 데이터 분석에서 출발해, 지금은 생성형 AI 기반 대화형 서비스를 기획부터 개발, 운영 개선까지 맡고 있습니다.
+        사용자가 실제로 던지는 질문에서 출발하고, 틀린 답은 원인부터 찾아 구조로 고칩니다.
+      </p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:screwym123@gmail.com">screwym123@gmail.com</a>
+        <a class="btn ghost" href="#featured">대표 프로젝트 보기</a>
+      </div>
+    </div>
+    <div class="photo"><img src="assets/img/ympark_removebg.png" alt="박영민 프로필 사진"></div>
+  </div>
+
+  <section>
+    <div class="grid3">
+      <div class="card"><h3>대화형 AI 서비스 설계</h3><p>질문 분류, 후속 질문, 되묻기, 화면 이동까지 여러 턴에 걸친 대화 흐름을 설계하고 구현합니다.</p></div>
+      <div class="card"><h3>온톨로지 기반 NL2SQL</h3><p>현업 용어를 개념, 지표, 매핑 계층으로 정의하고, 의미 해석은 AI가, SQL 생성은 코드가 담당하는 엔진을 설계했습니다.</p></div>
+      <div class="card"><h3>데이터 기반 품질 개선</h3><p>현업 질문으로 평가 세트를 만들고, 오류를 원인별로 분류해 여러 문항을 함께 개선할 수 있는 지점부터 고칩니다.</p></div>
+    </div>
+  </section>
+
+  <section id="featured">
+    <div class="sec-title">FEATURED PROJECT</div>
+    <h2>전력설비 진단 AI Agent</h2>
+    <div class="card">
+      <div class="feature-head">
+        <div><span class="tag">PL</span> <span class="meta">LS ELECTRIC · 2025 ~ 현재</span></div>
+      </div>
+      <p style="margin:10px 0 0; color:var(--sub)">
+        전력설비 상태감시·진단 시스템에 대화형 AI Agent를 더하는 제품화 과제입니다. 현업 엔지니어가 알람 이력, 부분방전(PD), 유중가스(DGA) 같은 설비 데이터를
+        자연어로 조회하고 진단 보고서를 받을 수 있도록, 폐쇄망 현장에 맞춘 경량 언어모델(SLM)로 동작합니다.
+        과제 PL로서 요구사항 정의와 서비스 구조 설계, 현업 테스트를 이끌고, 데이터 조회 엔진과 대화 흐름은 직접 개발했습니다.
+      </p>
+
+      <h3 style="margin:24px 0 2px; font-size:17px">데이터 조회 엔진: 의미 해석은 AI가, SQL 생성은 코드가</h3>
+      <div class="legend"><span><i style="background:var(--violet)"></i>AI(언어모델)</span><span><i style="background:var(--blue)"></i>코드</span></div>
+      <div class="flow">
+        <div class="node"><b>질문</b><span>현업 용어 그대로</span></div>
+        <div class="arr">→</div>
+        <div class="node ai"><b>해석</b><span>정의된 항목 중에서만 선택</span></div>
+        <div class="arr">→</div>
+        <div class="node ai"><b>원문 대조</b><span>불일치하면 되묻기</span></div>
+        <div class="arr">→</div>
+        <div class="node code"><b>SQL 생성</b><span>매핑 · 지표 계층으로 조립</span></div>
+        <div class="arr">→</div>
+        <div class="node code"><b>실행 전 검증</b><span>도메인 규칙 위반 확인</span></div>
+      </div>
+      <p style="margin:6px 0 0; font-size:14px; color:var(--sub)">AI는 정의된 항목 중에서만 고르므로 없는 테이블·컬럼을 만들 수 없고, 같은 의미의 질문은 항상 같은 구조의 SQL이 됩니다.</p>
+
+      <h3 style="margin:24px 0 0; font-size:17px">세 번의 설계</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="when">1차</div>
+          <b>온톨로지 엔진 첫 설계</b>
+          <p>AI는 대상과 조건만 추출하고 SQL은 코드가 조립. 질문 유형이 늘자 질문을 먼저 분류하는 2단계 구조 도입</p>
         </div>
-</body>
+        <div class="step">
+          <div class="when">2차</div>
+          <b>예제 기반 방식</b>
+          <p>유사 예제를 참고해 AI가 SQL을 생성. 묻지 않은 조건까지 복사되는 오답이 부분 수정으로는 해결되지 않는 구조적 한계로 판단</p>
+        </div>
+        <div class="step now">
+          <div class="when">3차 · 현재</div>
+          <b>4계층 온톨로지 엔진</b>
+          <p>개념 · 지표 · 매핑 · 물리 계층으로 재설계하고 전면 전환. 현업이 규칙을 직접 수정하고 영향을 미리 확인하는 흐름까지 설계</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section id="press">
+    <div class="sec-title">PRESS</div>
+    <h2>언론 보도</h2>
+    <div class="card press">
+      <div class="src">CEO스코어데일리<small>2024년 5월 28일</small></div>
+      <div>
+        <h3><a href="https://m.ceoscoredaily.com/page/view/2024052816531946030" target="_blank" rel="noopener">구자균 회장 "AI 선택아닌 필수"… LS일렉트릭, 제조업 전반에 생성형 AI 도입 '속도' ↗</a></h3>
+        <blockquote>
+          <mark>현재 LS일렉트릭은 솔루션 스퀘어 내 기술지원 AI 챗봇 서비스를 테스트 버전으로 운영 중이다. 기술지원 AI 챗봇을 통해 24시간 365일 고객이 원하는 시간에 대응할 수 있는 AICC(인공지능고객센터)를 구축하는 것을 목표로 한다.</mark>
+        </blockquote>
+        <p style="margin:10px 0 0; font-size:14px; color:var(--sub)">PM으로 기획부터 베타 오픈까지 총괄한 기술지원 AI 챗봇이 회사의 생성형 AI 도입 사례로 소개되었습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">EXPERIENCE</div>
+    <h2>경력</h2>
+    <div class="card">
+      <ul class="list">
+        <li><div class="v">AI Engineer (Data Scientist) · LS ELECTRIC</div><div class="k">2021 ~ 현재</div></li>
+        <li><div class="v">Data Scientist Intern · LS ELECTRIC</div><div class="k">2020</div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-title">PROJECTS</div>
+    <h2>프로젝트</h2>
+    <div class="card">
+
+      <div class="year">
+        <div class="y">2025</div>
+        <div>
+          <div class="proj"><span class="t">경량언어모델 활용 진단 AI Agent 개발 (PL)</span><span class="d">25.1 ~ 현재</span>
+            <ul>
+              <li>AI Agent 도입을 통한 진단 솔루션(Condition Monitoring and Diagnostic System) 혁신</li>
+              <li>On-prem 환경 경량 언어모델 적용, 온톨로지 기반 데이터 조회 엔진 설계·개발</li>
+            </ul></div>
+          <div class="proj"><span class="t">AI 기반 DCIM(Data Center Infrastructure Management) 고도화</span><span class="d">25.4 ~ 25.9</span>
+            <ul><li>시작 전</li></ul></div>
+          <div class="proj"><span class="t">HVTR 기술 문서 검토 자동화 AI Agent 개발</span><span class="d">25.3 ~ 25.10</span>
+            <ul><li>HVTR 고객 사양서, 규격 문서 등 사용자가 원하는 항목을 검토하고 질의응답하는 AI Agent를 개발해, 글로벌 고객 대응을 위한 정확한 정보 전달과 기술 검토 시간·비용 절감</li></ul></div>
+          <div class="proj"><span class="t">Global 현장 합리화 지원 AI Agent 개발</span><span class="d">25.4 ~ 25.10</span>
+            <ul><li>해외사업장 및 협력사의 글로벌 경쟁력 확보를 위해, 현장 합리화 자료를 활용한 AI Agent로 현장개선 전문가(FC) 육성 지원</li></ul></div>
+          <div class="proj"><span class="t">자동화 PLC 엔지니어링 AI Agent 개발</span><span class="d">25.4 ~ 25.10</span>
+            <ul><li>자사 PLC 소프트웨어 XG5000에 AI 기반 검색 엔진을 탑재해 사용자 편의성과 제품 경쟁력 강화</li></ul></div>
+        </div>
+      </div>
+
+      <div class="year">
+        <div class="y">2024</div>
+        <div>
+          <div class="proj"><span class="t">기술상담센터 AICC(AI Contact Center) 기반 구축 (PM)</span><span class="d">24.1 ~ 24.8</span>
+            <ul>
+              <li>자동화 엔지니어링 고객 기술지원 사이트 <a href="https://sol.ls-electric.com/kr/ko/main" target="_blank" rel="noopener">솔루션 스퀘어</a>의 생성형 AI RAG 챗봇(초·중급 기술 문의) 개발 및 베타 오픈</li>
+              <li>회사의 생성형 AI 도입 사례로 <a href="#press">언론 보도</a></li>
+            </ul></div>
+          <div class="proj"><span class="t">Product Lens: LLM 기반 Smart Search 개발</span><span class="d">24.9 ~ 24.10</span>
+            <ul>
+              <li>글로벌 사업 성과 향상을 위한 Global DX Ideation의 일환으로 AI 기반 제품 정보 서비스 개발</li>
+              <li>LLM 기반 제품 정보 Q&amp;A, 초·중·고급 난이도 질문으로 답변 품질 평가</li>
+            </ul></div>
+        </div>
+      </div>
+
+      <div class="year">
+        <div class="y">2023</div>
+        <div>
+          <div class="proj"><span class="t">탄소배출 추적을 위한 데이터 통합</span><span class="d">23.5 ~ 23.11</span>
+            <ul>
+              <li>전사 탄소배출 통합 대시보드 개발 목표</li>
+              <li>사내 기간계 시스템 연결, 데이터 파이프라인 구축, 데이터 정합성 검증</li>
+              <li>Microsoft Fabric, PySpark, SQL</li>
+            </ul></div>
+          <div class="proj"><span class="t">Palantir: R&amp;D Product Ontology 360 Overview (Foundry)</span><span class="d">23.3 ~ 23.4</span>
+            <ul>
+              <li>팔란티어(Palantir)와 LS ELECTRIC 협업 과제</li>
+              <li>R&amp;D 제품의 기획부터 개발, 생산, 매출, 서비스까지 전체 생애주기를 조망하는 온톨로지 구축</li>
+              <li>Palantir Foundry, PySpark, SQL</li>
+            </ul></div>
+          <div class="proj"><span class="t">공정 라인 실시간 생산현황 대시보드 구축</span><span class="d">23.9 ~ 23.11</span>
+            <ul>
+              <li>생산성 분석 Assistant 기반 실시간 현황 대시보드 개발</li>
+              <li>자사 솔루션 제품(Smart Workbench) 경쟁력 강화 목표</li>
+              <li>실시간 업데이트를 위한 Docker Bind Mount, Plotly Dash</li>
+            </ul></div>
+        </div>
+      </div>
+
+      <div class="year">
+        <div class="y">2022</div>
+        <div>
+          <div class="proj"><span class="t">공정 라인 생산성 분석 Assistant 개발</span><span class="d">22.2 ~ 22.11</span>
+            <ul>
+              <li>공정 라인 동기화 작업대(Smart Workbench)의 실제 작업 이력 활용</li>
+              <li>천안사업장 인버터 생산라인 대상 과거 작업 트렌드 분석 및 작업자 생산성 비교 기능 제공, 스마트 셀 라인(작업자 + 로봇팔)으로 확대 적용</li>
+              <li>Streamlit 기반 웹앱</li>
+            </ul></div>
+          <div class="proj"><span class="t">로봇팔 생산공정 데이터 분석</span><span class="d">22.5 ~ 22.11</span>
+            <ul>
+              <li>야스카와 로봇 기반 자동화 생산공정 라인의 설비 안정화 목표</li>
+              <li>생산 데이터 기반 이상 탐지 알람, UCL/LCL과 클러스터링을 통한 CBM(Condition Based Monitoring) 알람 시스템 구축</li>
+            </ul></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="awards">
+    <div class="sec-title">AWARDS · PATENTS</div>
+    <h2>수상 · 특허</h2>
+    <div class="two">
+      <div class="card">
+        <h3 style="margin:0 0 6px; font-size:17px">수상</h3>
+        <ul class="list">
+          <li><div class="k">2024</div><div class="v">LG PRI Tech Day 전시회 출품작 선정 (AICC)</div></li>
+          <li><div class="k">2024</div><div class="v">LS 전 계열사 대상 Future Day Innovation Leadership 부문 입상 (AICC)</div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 6px; font-size:17px">특허 (출원 후 등록 전)</h3>
+        <ul class="list">
+          <li><div class="k">2024.12.23 · 10-2024-0194099 · 발명서 등급 A</div><div class="v">Advanced Document Retriever Engine</div><div class="s">생성형 인공지능 모델 기반 정보 제공 장치 및 정보 제공 방법</div></li>
+          <li><div class="k">2024.08.22 · PCT/KR2024/012558 · 발명서 등급 B</div><div class="v">스마트팩토리 센서 출력과 연동된 고장 상담 시스템</div><div class="s">생성형 인공지능 기반 정보 제공 장치, 이를 포함하는 정보 제공 시스템 및 정보 제공 방법</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">SKILLS</div>
+    <h2>기술</h2>
+    <div class="skills">
+      <span>LLM · SLM (vLLM)</span><span>RAG</span><span>NL2SQL</span><span>Ontology</span><span>Multi-Agent (A2A, MCP)</span>
+      <span>Python</span><span>FastAPI</span><span>SQL (PostgreSQL, MySQL)</span><span>PySpark</span>
+      <span>Microsoft Fabric</span><span>Palantir Foundry</span><span>MLflow</span><span>Docker</span><span>Streamlit · Plotly Dash</span>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div style="font-weight:700; color:var(--ink); margin-bottom:4px">박영민 Youngmin Park</div>
+    <div><a href="mailto:screwym123@gmail.com">screwym123@gmail.com</a> · +82 10-2049-7699 · 1995.3.19</div>
+  </footer>
+
+</main>
+</body>
 </html>
