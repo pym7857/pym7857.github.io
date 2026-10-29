@@ -68,7 +68,8 @@
     .figure { background:#fff; border:1px solid var(--line, #e3e6ec); border-radius:14px; padding:18px; margin:14px 0 0; overflow-x:auto; }
   .figcap { margin:8px 0 0; font-size:14px; color:var(--sub); }
   .feature-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
-    .award { display: inline-block; font-size: 14px; font-weight: 800; padding: 5px 12px; border-radius: 999px; background: #fff6d6; color: #7a5300; border: 1.5px solid #e2b64a; }
+    .award.sm { font-size:12px; padding:2px 10px; margin-left:6px; vertical-align:middle; }
+  .award { display: inline-block; font-size: 14px; font-weight: 800; padding: 5px 12px; border-radius: 999px; background: #fff6d6; color: #7a5300; border: 1.5px solid #e2b64a; }
     @media (prefers-color-scheme: dark) { .award { background: #3a2f0c; color: #ffd978; border-color: #8a6a1c; } }
     .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); }
     .meta { color: var(--muted); font-size: 14px; }
@@ -99,10 +100,10 @@
     .press blockquote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--navy); background: var(--bg); border-radius: 0 10px 10px 0; color: var(--sub); font-size: 15px; }
     .press mark { background: var(--hl); color: inherit; padding: 0 2px; }
 
-    .year { display: grid; grid-template-columns: 90px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+    .year { display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
     .year:first-of-type { border-top: 0; }
     .year .y { font-size: 22px; font-weight: 800; color: var(--navy); }
-    @media (max-width: 640px) { .year { grid-template-columns: 1fr; gap: 6px; } }
+    @media (max-width: 640px) { .year { grid-template-columns: minmax(0,1fr); gap: 6px; } }
     .proj { margin-bottom: 16px; }
     .proj:last-child { margin-bottom: 0; }
     .proj .t { font-weight: 700; }
@@ -130,9 +131,8 @@
   <div class="wrap">
     <a class="brand" href="#top">Youngmin Park</a>
     <ul>
-      <li><a href="#featured">대표 프로젝트</a></li>
-      <li><a href="#press">언론 보도</a></li>
       <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#press">언론 보도</a></li>
       <li><a href="#awards">수상 · 특허</a></li>
       <li><a href="#contact">연락처</a></li>
     </ul>
@@ -152,7 +152,7 @@
       </p>
       <div class="btns">
         <a class="btn primary" href="mailto:screwym123@gmail.com">screwym123@gmail.com</a>
-        <a class="btn ghost" href="#featured">대표 프로젝트 보기</a>
+        <a class="btn ghost" href="#projects">프로젝트 보기</a>
       </div>
     </div>
     <div class="photo"><img src="assets/img/ympark_removebg.png" alt="박영민 프로필 사진"></div>
@@ -166,116 +166,6 @@
     </div>
   </section>
 
-  <section id="featured">
-    <div class="sec-title">FEATURED PROJECT</div>
-    <h2>전력설비 진단 AI Agent</h2>
-    <div class="card">
-      <div class="feature-head">
-        <div><span class="tag">PL</span> <span class="meta">LS ELECTRIC · 2025 ~ 현재</span></div>
-        <div class="award">🏆 2025 LS Future Day 최우수상</div>
-      </div>
-      <p style="margin:10px 0 0; color:var(--sub)">
-        전력설비 상태감시·진단 시스템에 대화형 AI Agent를 더하는 제품화 과제입니다. 현업 엔지니어가 알람 이력, 부분방전(PD), 유중가스(DGA) 같은 설비 데이터를
-        자연어로 조회하고 진단 보고서를 받을 수 있도록, 폐쇄망 현장에 맞춘 경량 언어모델(SLM)로 동작합니다.
-        과제 PL로서 요구사항 정의와 서비스 구조 설계, 현업 테스트를 이끌고, 데이터 조회 엔진과 대화 흐름은 직접 개발했습니다.
-      </p>
-
-      <h3 style="margin:24px 0 0; font-size:17px">현장 용어를 이해하는 4계층 온톨로지를 직접 설계했습니다</h3>
-      <div class="figure"><svg viewBox="0 0 1000 446" style="width:100%; min-width:760px; height:auto; display:block" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif"><g transform="translate(125,0)">
-<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a909b"/></marker></defs>
-<circle cx="290" cy="14" r="8" fill="#4b515d"/><path d="M276,40 a14,13 0 0 1 28,0 z" fill="#4b515d"/>
-<text x="314" y="32" font-size="12.5" font-weight="700" fill="#151922">현장 엔지니어</text>
-<line x1="290" y1="44" x2="290" y2="60" stroke="#8a909b" stroke-width="2" marker-end="url(#ah)"/>
-<text x="298" y="56" font-size="10.5" fill="#4b515d">대화</text>
-<rect x="120" y="62" width="340" height="46" rx="12" fill="#f1ecfc" stroke="#6a4bbf" stroke-width="1.8"/>
-<text x="290" y="82" text-anchor="middle" font-size="14.5" font-weight="800" fill="#6a4bbf">대화형 AI Agent</text>
-<text x="290" y="99" text-anchor="middle" font-size="11" fill="#4b515d">질문 의도 판단 · 애매하면 되묻기</text>
-<line x1="173.0" y1="108" x2="173.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
-<rect x="120" y="124" width="106" height="36" rx="8" fill="#1f3d7a" stroke="none" stroke-width="1.3"/>
-<text x="173.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">데이터 조회</text>
-<text x="173.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#c9d6f0">NL2SQL</text>
-<line x1="290.0" y1="108" x2="290.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
-<rect x="237" y="124" width="106" height="36" rx="8" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
-<text x="290.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#4b515d">문서 검색</text>
-<text x="290.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#8a909b">RAG</text>
-<line x1="407.0" y1="108" x2="407.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
-<rect x="354" y="124" width="106" height="36" rx="8" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
-<text x="407.0" y="147" text-anchor="middle" font-size="12" font-weight="800" fill="#4b515d">보고서 생성</text>
-<rect x="60" y="182" width="500" height="200" rx="14" fill="#fbfaf4" stroke="#f2a900" stroke-width="2" stroke-dasharray="7 5"/>
-<rect x="215" y="170" width="210" height="24" rx="12" fill="#f2a900"/>
-<text x="320" y="187" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2b2000">직접 설계한 4계층 온톨로지</text>
-<line x1="173" y1="160" x2="173" y2="200" stroke="#1f3d7a" stroke-width="2" marker-end="url(#ah)"/>
-<polygon points="140,204 520,204 490,236 110,236" fill="#1f3d7a"/>
-<rect x="110" y="236" width="380" height="7" fill="#1f3d7a" opacity="0.6"/>
-<text x="315.0" y="225" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">개념 (Concept Layer)</text>
-<circle cx="511.0" cy="220.0" r="3" fill="#1f3d7a"/><line x1="511.0" y1="220.0" x2="600" y2="220.0" stroke="#c4cad4" stroke-width="1.5"/>
-<text x="610" y="217.0" font-size="14.5" font-weight="800" fill="#151922">설비 계층과 현장 규칙</text>
-<text x="610" y="235.0" font-size="12" fill="#4b515d">"DGA 진단은 유입식 변압기에만"</text>
-<polygon points="140,249 520,249 490,281 110,281" fill="#2e5aa8"/>
-<rect x="110" y="281" width="380" height="7" fill="#2e5aa8" opacity="0.6"/>
-<text x="315.0" y="270" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">계산 규칙 (Metric Layer)</text>
-<circle cx="511.0" cy="265.0" r="3" fill="#2e5aa8"/><line x1="511.0" y1="265.0" x2="600" y2="265.0" stroke="#c4cad4" stroke-width="1.5"/>
-<text x="610" y="262.0" font-size="14.5" font-weight="800" fill="#151922">현장이 쓰는 계산 방식</text>
-<text x="610" y="280.0" font-size="12" fill="#4b515d">"정상복귀 알람은 집계에서 제외"</text>
-<polygon points="140,294 520,294 490,326 110,326" fill="#4472c4"/>
-<rect x="110" y="326" width="380" height="7" fill="#4472c4" opacity="0.6"/>
-<text x="315.0" y="315" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">연결 (Mapping Layer)</text>
-<circle cx="511.0" cy="310.0" r="3" fill="#4472c4"/><line x1="511.0" y1="310.0" x2="600" y2="310.0" stroke="#c4cad4" stroke-width="1.5"/>
-<text x="610" y="307.0" font-size="14.5" font-weight="800" fill="#151922">현장 용어를 DB에 연결</text>
-<text x="610" y="325.0" font-size="12" fill="#4b515d">월별로 나뉜 표까지 자동 연결</text>
-<polygon points="140,339 520,339 490,371 110,371" fill="#7f9ad6"/>
-<rect x="110" y="371" width="380" height="7" fill="#7f9ad6" opacity="0.6"/>
-<text x="315.0" y="360" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">실제 데이터 (Physical Layer)</text>
-<circle cx="511.0" cy="355.0" r="3" fill="#7f9ad6"/><line x1="511.0" y1="355.0" x2="600" y2="355.0" stroke="#c4cad4" stroke-width="1.5"/>
-<text x="610" y="352.0" font-size="14.5" font-weight="800" fill="#151922">설비 이름은 매번 DB에서 확인</text>
-<text x="610" y="370.0" font-size="12" fill="#4b515d">새로 등록된 설비도 바로 인식</text>
-<line x1="300" y1="382" x2="300" y2="398" stroke="#8a909b" stroke-width="2" marker-end="url(#ah)"/>
-<path d="M266,408 v22 a34,8 0 0 0 68,0 v-22" fill="#eef1f6" stroke="#4b515d" stroke-width="1.5"/>
-<ellipse cx="300" cy="408" rx="34" ry="8" fill="#fff" stroke="#4b515d" stroke-width="1.5"/>
-<text x="300" y="430" text-anchor="middle" font-size="12" font-weight="800" fill="#151922">설비 DB</text>
-</g>
-<rect x="0" y="58" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
-<text x="12" y="72" font-size="13" font-weight="800" fill="#151922">대화 흐름 설계</text>
-<text x="12" y="92" font-size="11" fill="#4b515d">질문 의도를 판단해</text>
-<text x="12" y="108" font-size="11" fill="#4b515d">담당 에이전트로 연결합니다</text>
-<rect x="0" y="196" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
-<text x="12" y="210" font-size="13" font-weight="800" fill="#151922">규칙 기반 조회문 생성</text>
-<text x="12" y="230" font-size="11" fill="#4b515d">AI는 질문의 뜻을 파악하고</text>
-<text x="12" y="246" font-size="11" fill="#4b515d">조회문은 온톨로지 규칙대로 만듭니다</text>
-<rect x="0" y="296" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
-<text x="12" y="310" font-size="13" font-weight="800" fill="#151922">규칙 관리</text>
-<text x="12" y="330" font-size="11" fill="#4b515d">새 현장 규칙을 관리 화면에서</text>
-<text x="12" y="346" font-size="11" fill="#4b515d">추가하면 바로 반영됩니다</text>
-</svg></div>
-      <p class="figcap">현장 규칙을 담은 온톨로지 위에서 데이터를 조회해, 폐쇄망용 경량 모델로도 정확한 답을 냅니다.</p>
-    </div>
-  </section>
-
-  <section id="press">
-    <div class="sec-title">PRESS</div>
-    <h2>언론 보도</h2>
-    <div class="card press">
-      <div class="src">CEO스코어데일리<small>2024년 5월 28일</small></div>
-      <div>
-        <h3><a href="https://m.ceoscoredaily.com/page/view/2024052816531946030" target="_blank" rel="noopener">구자균 회장 "AI 선택아닌 필수"… LS일렉트릭, 제조업 전반에 생성형 AI 도입 '속도' ↗</a></h3>
-        <blockquote>
-          <mark>현재 LS일렉트릭은 솔루션 스퀘어 내 기술지원 AI 챗봇 서비스를 테스트 버전으로 운영 중이다. 기술지원 AI 챗봇을 통해 24시간 365일 고객이 원하는 시간에 대응할 수 있는 AICC(인공지능고객센터)를 구축하는 것을 목표로 한다.</mark>
-        </blockquote>
-        <p style="margin:10px 0 0; font-size:14px; color:var(--sub)">PM으로 기획부터 베타 오픈까지 총괄한 AICC 기술지원 챗봇이 회사의 생성형 AI 도입 사례로 소개되었습니다.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-title">EXPERIENCE</div>
-    <h2>경력</h2>
-    <div class="card">
-      <ul class="list">
-        <li><div class="v">AI Engineer (Data Scientist) · LS ELECTRIC</div><div class="k">2021 ~ 현재</div></li>
-        <li><div class="v">Data Scientist Intern · LS ELECTRIC</div><div class="k">2020</div></li>
-      </ul>
-    </div>
-  </section>
 
   <section id="projects">
     <div class="sec-title">PROJECTS</div>
@@ -285,12 +175,11 @@
       <div class="year">
         <div class="y">2026</div>
         <div>
-          <div class="proj"><span class="t">UL 배전반 사양서 검토 AI Agent (기획 · 핵심 개발)</span><span class="d">26.4 ~ 26.10</span>
+          <div class="proj"><span class="t">UL 배전반 사양서 검토 AI Agent (기획 · 핵심 개발)</span> <span class="award sm">🏆 2026 LS Future Day 우수상</span><span class="d">26.4 ~ 26.10</span>
             <ul>
               <li>미국 고객 사양서를 조항마다 검토해 Comply / Deviation / Exception 등급을 매기던 수작업을, 과거 판정 이력을 근거로 추천하는 AI Agent로 대체</li>
               <li>제각각인 판정 이력 문서는 Vision이 판독하고 계층 · 상속 · 검산은 코드가 담당, 현업 확정 등급만 검색 근거로 사용</li>
               <li>비개발 현업이 자연어로 쓰는 업무 도구에 플러그인으로 배포, 클라우드 검색 서버는 팀원과 협업</li>
-              <li>2026 LS Future Day 우수상</li>
             </ul>
             <div class="figure"><svg viewBox="0 0 1000 452" style="width:100%; min-width:760px; height:auto; display:block" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif">
 <defs><marker id="ah2" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a909b"/></marker></defs><g transform="translate(-40,0)">
@@ -393,12 +282,79 @@
       <div class="year">
         <div class="y">2025</div>
         <div>
-          <div class="proj"><span class="t">전력설비 진단 AI Agent (PL)</span><span class="d">25.1 ~ 현재</span>
+          <div class="proj"><span class="t">전력설비 진단 AI Agent (PL)</span> <span class="award sm">🏆 2025 LS Future Day 최우수상</span><span class="d">25.1 ~ 현재</span>
             <ul>
               <li>AI Agent 도입을 통한 진단 솔루션(Condition Monitoring and Diagnostic System) 혁신</li>
               <li>On-prem 환경 경량 언어모델 적용, 온톨로지 기반 데이터 조회 엔진 설계·개발</li>
               <li>2025 LS Future Day 최우수상 (출품작 전체 1위)</li>
-            </ul></div>
+            </ul>
+            <div class="figure"><svg viewBox="0 0 1000 446" style="width:100%; min-width:760px; height:auto; display:block" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif"><g transform="translate(125,0)">
+<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a909b"/></marker></defs>
+<circle cx="290" cy="14" r="8" fill="#4b515d"/><path d="M276,40 a14,13 0 0 1 28,0 z" fill="#4b515d"/>
+<text x="314" y="32" font-size="12.5" font-weight="700" fill="#151922">현장 엔지니어</text>
+<line x1="290" y1="44" x2="290" y2="60" stroke="#8a909b" stroke-width="2" marker-end="url(#ah)"/>
+<text x="298" y="56" font-size="10.5" fill="#4b515d">대화</text>
+<rect x="120" y="62" width="340" height="46" rx="12" fill="#f1ecfc" stroke="#6a4bbf" stroke-width="1.8"/>
+<text x="290" y="82" text-anchor="middle" font-size="14.5" font-weight="800" fill="#6a4bbf">대화형 AI Agent</text>
+<text x="290" y="99" text-anchor="middle" font-size="11" fill="#4b515d">질문 의도 판단 · 애매하면 되묻기</text>
+<line x1="173.0" y1="108" x2="173.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="120" y="124" width="106" height="36" rx="8" fill="#1f3d7a" stroke="none" stroke-width="1.3"/>
+<text x="173.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">데이터 조회</text>
+<text x="173.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#c9d6f0">NL2SQL</text>
+<line x1="290.0" y1="108" x2="290.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="237" y="124" width="106" height="36" rx="8" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
+<text x="290.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#4b515d">문서 검색</text>
+<text x="290.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#8a909b">RAG</text>
+<line x1="407.0" y1="108" x2="407.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="354" y="124" width="106" height="36" rx="8" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
+<text x="407.0" y="147" text-anchor="middle" font-size="12" font-weight="800" fill="#4b515d">보고서 생성</text>
+<rect x="60" y="182" width="500" height="200" rx="14" fill="#fbfaf4" stroke="#f2a900" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="215" y="170" width="210" height="24" rx="12" fill="#f2a900"/>
+<text x="320" y="187" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2b2000">직접 설계한 4계층 온톨로지</text>
+<line x1="173" y1="160" x2="173" y2="200" stroke="#1f3d7a" stroke-width="2" marker-end="url(#ah)"/>
+<polygon points="140,204 520,204 490,236 110,236" fill="#1f3d7a"/>
+<rect x="110" y="236" width="380" height="7" fill="#1f3d7a" opacity="0.6"/>
+<text x="315.0" y="225" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">개념 (Concept Layer)</text>
+<circle cx="511.0" cy="220.0" r="3" fill="#1f3d7a"/><line x1="511.0" y1="220.0" x2="600" y2="220.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="217.0" font-size="14.5" font-weight="800" fill="#151922">설비 계층과 현장 규칙</text>
+<text x="610" y="235.0" font-size="12" fill="#4b515d">"DGA 진단은 유입식 변압기에만"</text>
+<polygon points="140,249 520,249 490,281 110,281" fill="#2e5aa8"/>
+<rect x="110" y="281" width="380" height="7" fill="#2e5aa8" opacity="0.6"/>
+<text x="315.0" y="270" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">계산 규칙 (Metric Layer)</text>
+<circle cx="511.0" cy="265.0" r="3" fill="#2e5aa8"/><line x1="511.0" y1="265.0" x2="600" y2="265.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="262.0" font-size="14.5" font-weight="800" fill="#151922">현장이 쓰는 계산 방식</text>
+<text x="610" y="280.0" font-size="12" fill="#4b515d">"정상복귀 알람은 집계에서 제외"</text>
+<polygon points="140,294 520,294 490,326 110,326" fill="#4472c4"/>
+<rect x="110" y="326" width="380" height="7" fill="#4472c4" opacity="0.6"/>
+<text x="315.0" y="315" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">연결 (Mapping Layer)</text>
+<circle cx="511.0" cy="310.0" r="3" fill="#4472c4"/><line x1="511.0" y1="310.0" x2="600" y2="310.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="307.0" font-size="14.5" font-weight="800" fill="#151922">현장 용어를 DB에 연결</text>
+<text x="610" y="325.0" font-size="12" fill="#4b515d">월별로 나뉜 표까지 자동 연결</text>
+<polygon points="140,339 520,339 490,371 110,371" fill="#7f9ad6"/>
+<rect x="110" y="371" width="380" height="7" fill="#7f9ad6" opacity="0.6"/>
+<text x="315.0" y="360" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">실제 데이터 (Physical Layer)</text>
+<circle cx="511.0" cy="355.0" r="3" fill="#7f9ad6"/><line x1="511.0" y1="355.0" x2="600" y2="355.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="352.0" font-size="14.5" font-weight="800" fill="#151922">설비 이름은 매번 DB에서 확인</text>
+<text x="610" y="370.0" font-size="12" fill="#4b515d">새로 등록된 설비도 바로 인식</text>
+<line x1="300" y1="382" x2="300" y2="398" stroke="#8a909b" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M266,408 v22 a34,8 0 0 0 68,0 v-22" fill="#eef1f6" stroke="#4b515d" stroke-width="1.5"/>
+<ellipse cx="300" cy="408" rx="34" ry="8" fill="#fff" stroke="#4b515d" stroke-width="1.5"/>
+<text x="300" y="430" text-anchor="middle" font-size="12" font-weight="800" fill="#151922">설비 DB</text>
+</g>
+<rect x="0" y="58" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="72" font-size="13" font-weight="800" fill="#151922">대화 흐름 설계</text>
+<text x="12" y="92" font-size="11" fill="#4b515d">질문 의도를 판단해</text>
+<text x="12" y="108" font-size="11" fill="#4b515d">담당 에이전트로 연결합니다</text>
+<rect x="0" y="196" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="210" font-size="13" font-weight="800" fill="#151922">규칙 기반 조회문 생성</text>
+<text x="12" y="230" font-size="11" fill="#4b515d">AI는 질문의 뜻을 파악하고</text>
+<text x="12" y="246" font-size="11" fill="#4b515d">조회문은 온톨로지 규칙대로 만듭니다</text>
+<rect x="0" y="296" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="310" font-size="13" font-weight="800" fill="#151922">규칙 관리</text>
+<text x="12" y="330" font-size="11" fill="#4b515d">새 현장 규칙을 관리 화면에서</text>
+<text x="12" y="346" font-size="11" fill="#4b515d">추가하면 바로 반영됩니다</text>
+</svg></div>
+      <p class="figcap">현장 규칙을 담은 온톨로지 위에서 데이터를 조회해, 폐쇄망용 경량 모델로도 정확한 답을 냅니다.</p></div>
           <div class="proj"><span class="t">HVTR 기술 문서 검토 자동화 AI Agent 개발</span><span class="d">25.3 ~ 25.10</span>
             <ul><li>HVTR 고객 사양서, 규격 문서 등 사용자가 원하는 항목을 검토하고 질의응답하는 AI Agent를 개발해, 글로벌 고객 대응을 위한 정확한 정보 전달과 기술 검토 시간·비용 절감</li></ul></div>
           <div class="proj"><span class="t">Global 현장 합리화 지원 AI Agent 개발</span><span class="d">25.4 ~ 25.10</span>
@@ -508,6 +464,34 @@
 
     </div>
   </section>
+
+  <section id="press">
+    <div class="sec-title">PRESS</div>
+    <h2>언론 보도</h2>
+    <div class="card press">
+      <div class="src">CEO스코어데일리<small>2024년 5월 28일</small></div>
+      <div>
+        <h3><a href="https://m.ceoscoredaily.com/page/view/2024052816531946030" target="_blank" rel="noopener">구자균 회장 "AI 선택아닌 필수"… LS일렉트릭, 제조업 전반에 생성형 AI 도입 '속도' ↗</a></h3>
+        <blockquote>
+          <mark>현재 LS일렉트릭은 솔루션 스퀘어 내 기술지원 AI 챗봇 서비스를 테스트 버전으로 운영 중이다. 기술지원 AI 챗봇을 통해 24시간 365일 고객이 원하는 시간에 대응할 수 있는 AICC(인공지능고객센터)를 구축하는 것을 목표로 한다.</mark>
+        </blockquote>
+        <p style="margin:10px 0 0; font-size:14px; color:var(--sub)">PM으로 기획부터 베타 오픈까지 총괄한 AICC 기술지원 챗봇이 회사의 생성형 AI 도입 사례로 소개되었습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title">EXPERIENCE</div>
+    <h2>경력</h2>
+    <div class="card">
+      <ul class="list">
+        <li><div class="v">AI Engineer (Data Scientist) · LS ELECTRIC</div><div class="k">2021 ~ 현재</div></li>
+        <li><div class="v">Data Scientist Intern · LS ELECTRIC</div><div class="k">2020</div></li>
+      </ul>
+    </div>
+  </section>
+
+
 
   <section id="awards">
     <div class="sec-title">AWARDS · PATENTS</div>
