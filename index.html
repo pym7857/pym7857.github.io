@@ -159,7 +159,7 @@
   <section>
     <div class="grid3">
       <div class="card"><h3>대화형 AI 서비스 설계</h3><p>질문 분류, 후속 질문, 되묻기, 화면 이동까지 여러 턴에 걸친 대화 흐름을 설계하고 구현합니다.</p></div>
-      <div class="card"><h3>온톨로지 기반 NL2SQL</h3><p>현업 용어를 개념, 지표, 매핑 계층으로 정의하고, 의미 해석은 AI가, SQL 생성은 코드가 담당하는 엔진을 설계했습니다.</p></div>
+      <div class="card"><h3>온톨로지 기반 NL2SQL</h3><p>현업 용어를 개념, 계산 규칙, 연결 계층으로 정의하고, 의미 해석은 AI가, SQL 생성은 코드가 담당하는 엔진을 설계했습니다.</p></div>
       <div class="card"><h3>데이터 기반 품질 개선</h3><p>현업 질문으로 평가 세트를 만들고, 오류를 원인별로 분류해 여러 문항을 함께 개선할 수 있는 지점부터 고칩니다.</p></div>
     </div>
   </section>
@@ -187,7 +187,7 @@
         <div class="arr">→</div>
         <div class="node ai"><b>원문 대조</b><span>불일치하면 되묻기</span></div>
         <div class="arr">→</div>
-        <div class="node code"><b>SQL 생성</b><span>매핑 · 지표 계층으로 조립</span></div>
+        <div class="node code"><b>SQL 생성</b><span>연결 · 계산 규칙 계층으로 조립</span></div>
         <div class="arr">→</div>
         <div class="node code"><b>실행 전 검증</b><span>도메인 규칙 위반 확인</span></div>
       </div>
@@ -202,13 +202,13 @@
         </div>
         <div class="step">
           <div class="when">2차</div>
-          <b>예제 기반 방식</b>
-          <p>유사 예제를 참고해 AI가 SQL을 생성. 묻지 않은 조건까지 복사되는 오답이 부분 수정으로는 해결되지 않는 구조적 한계로 판단</p>
+          <b>예제 기반 SQL 생성</b>
+          <p>유사 예제를 참고해 AI가 SQL을 생성. 질문 유형이 늘수록 현장 규칙을 구조화한 지식층이 필요하다고 판단</p>
         </div>
         <div class="step now">
           <div class="when">3차 · 현재</div>
           <b>4계층 온톨로지 엔진</b>
-          <p>개념 · 지표 · 매핑 · 물리 계층으로 재설계하고 전면 전환. 현업이 규칙을 직접 수정하고 영향을 미리 확인하는 흐름까지 설계</p>
+          <p>개념(Concept) · 계산 규칙(Metric) · 연결(Mapping) · 실제 데이터(Physical) 계층으로 재설계하고 전면 전환. 현업이 규칙을 직접 수정하고 영향을 미리 확인하는 흐름까지 설계</p>
         </div>
       </div>
     </div>
@@ -252,7 +252,7 @@
             <ul>
               <li>미국 고객 사양서를 조항마다 검토해 Comply / Deviation / Exception 등급을 매기던 수작업을, 과거 판정 이력을 근거로 추천하는 AI Agent로 대체</li>
               <li>제각각인 판정 이력 문서는 Vision이 판독하고 계층 · 상속 · 검산은 코드가 담당, 현업 확정 등급만 검색 근거로 사용</li>
-              <li>비개발 현업이 자연어로 쓰는 Claude Cowork 플러그인으로 배포, 클라우드 검색 서버는 팀원과 협업</li>
+              <li>비개발 현업이 자연어로 쓰는 업무 도구에 플러그인으로 배포, 클라우드 검색 서버는 팀원과 협업</li>
               <li>2026 LS Future Day 우수상</li>
             </ul></div>
         </div>
@@ -295,17 +295,17 @@
       <div class="year">
         <div class="y">2023</div>
         <div>
+          <div class="proj"><span class="t">Palantir 파트너 과제: R&amp;D Product Ontology 360 (Foundry)</span><span class="d">23.3 ~ 23.4</span>
+            <ul>
+              <li>팔란티어(Palantir)와 LS ELECTRIC 협업 과제</li>
+              <li>R&amp;D 제품의 기획부터 개발, 생산, 매출, 서비스까지 전체 생애주기를 조망하는 온톨로지 구축</li>
+              <li>Palantir Foundry, PySpark, SQL</li>
+            </ul></div>
           <div class="proj"><span class="t">탄소배출 추적을 위한 데이터 통합</span><span class="d">23.5 ~ 23.11</span>
             <ul>
               <li>전사 탄소배출 통합 대시보드 개발 목표</li>
               <li>사내 기간계 시스템 연결, 데이터 파이프라인 구축, 데이터 정합성 검증</li>
               <li>Microsoft Fabric, PySpark, SQL</li>
-            </ul></div>
-          <div class="proj"><span class="t">Palantir: R&amp;D Product Ontology 360 Overview (Foundry)</span><span class="d">23.3 ~ 23.4</span>
-            <ul>
-              <li>팔란티어(Palantir)와 LS ELECTRIC 협업 과제</li>
-              <li>R&amp;D 제품의 기획부터 개발, 생산, 매출, 서비스까지 전체 생애주기를 조망하는 온톨로지 구축</li>
-              <li>Palantir Foundry, PySpark, SQL</li>
             </ul></div>
           <div class="proj"><span class="t">공정 라인 실시간 생산현황 대시보드 구축</span><span class="d">23.9 ~ 23.11</span>
             <ul>
