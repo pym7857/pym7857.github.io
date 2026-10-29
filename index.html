@@ -65,7 +65,9 @@
     .card h3 { margin: 0 0 6px; font-size: 17px; }
     .card p { margin: 0; color: var(--sub); font-size: 15px; }
 
-    .feature-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+    .figure { background:#fff; border:1px solid var(--line, #e3e6ec); border-radius:14px; padding:18px; margin:14px 0 0; overflow-x:auto; }
+  .figcap { margin:8px 0 0; font-size:14px; color:var(--sub); }
+  .feature-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
     .award { display: inline-block; font-size: 14px; font-weight: 800; padding: 5px 12px; border-radius: 999px; background: #fff6d6; color: #7a5300; border: 1.5px solid #e2b64a; }
     @media (prefers-color-scheme: dark) { .award { background: #3a2f0c; color: #ffd978; border-color: #8a6a1c; } }
     .tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); }
@@ -178,39 +180,74 @@
         과제 PL로서 요구사항 정의와 서비스 구조 설계, 현업 테스트를 이끌고, 데이터 조회 엔진과 대화 흐름은 직접 개발했습니다.
       </p>
 
-      <h3 style="margin:24px 0 2px; font-size:17px">데이터 조회 엔진: 의미 해석은 AI가, SQL 생성은 코드가</h3>
-      <div class="legend"><span><i style="background:var(--violet)"></i>AI(언어모델)</span><span><i style="background:var(--blue)"></i>코드</span></div>
-      <div class="flow">
-        <div class="node"><b>질문</b><span>현업 용어 그대로</span></div>
-        <div class="arr">→</div>
-        <div class="node ai"><b>해석</b><span>정의된 항목 중에서만 선택</span></div>
-        <div class="arr">→</div>
-        <div class="node ai"><b>원문 대조</b><span>불일치하면 되묻기</span></div>
-        <div class="arr">→</div>
-        <div class="node code"><b>SQL 생성</b><span>연결 · 계산 규칙 계층으로 조립</span></div>
-        <div class="arr">→</div>
-        <div class="node code"><b>실행 전 검증</b><span>도메인 규칙 위반 확인</span></div>
-      </div>
-      <p style="margin:6px 0 0; font-size:14px; color:var(--sub)">AI는 정의된 항목 중에서만 고르므로 없는 테이블·컬럼을 만들 수 없고, 같은 의미의 질문은 항상 같은 구조의 SQL이 됩니다.</p>
-
-      <h3 style="margin:24px 0 0; font-size:17px">세 번의 설계</h3>
-      <div class="steps">
-        <div class="step">
-          <div class="when">1차</div>
-          <b>온톨로지 엔진 첫 설계</b>
-          <p>AI는 대상과 조건만 추출하고 SQL은 코드가 조립. 질문 유형이 늘자 질문을 먼저 분류하는 2단계 구조 도입</p>
-        </div>
-        <div class="step">
-          <div class="when">2차</div>
-          <b>예제 기반 SQL 생성</b>
-          <p>유사 예제를 참고해 AI가 SQL을 생성. 질문 유형이 늘수록 현장 규칙을 구조화한 지식층이 필요하다고 판단</p>
-        </div>
-        <div class="step now">
-          <div class="when">3차 · 현재</div>
-          <b>4계층 온톨로지 엔진</b>
-          <p>개념(Concept) · 계산 규칙(Metric) · 연결(Mapping) · 실제 데이터(Physical) 계층으로 재설계하고 전면 전환. 현업이 규칙을 직접 수정하고 영향을 미리 확인하는 흐름까지 설계</p>
-        </div>
-      </div>
+      <h3 style="margin:24px 0 0; font-size:17px">현장 용어를 이해하는 4계층 온톨로지를 직접 설계했습니다</h3>
+      <div class="figure"><svg viewBox="0 0 1000 446" style="width:100%; min-width:760px; height:auto; display:block" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif"><g transform="translate(125,0)">
+<defs><marker id="ah" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a909b"/></marker></defs>
+<circle cx="290" cy="14" r="8" fill="#4b515d"/><path d="M276,40 a14,13 0 0 1 28,0 z" fill="#4b515d"/>
+<text x="314" y="32" font-size="12.5" font-weight="700" fill="#151922">현장 엔지니어</text>
+<line x1="290" y1="44" x2="290" y2="60" stroke="#8a909b" stroke-width="2" marker-end="url(#ah)"/>
+<text x="298" y="56" font-size="10.5" fill="#4b515d">대화</text>
+<rect x="120" y="62" width="340" height="46" rx="12" fill="#f1ecfc" stroke="#6a4bbf" stroke-width="1.8"/>
+<text x="290" y="82" text-anchor="middle" font-size="14.5" font-weight="800" fill="#6a4bbf">대화형 AI Agent</text>
+<text x="290" y="99" text-anchor="middle" font-size="11" fill="#4b515d">질문 의도 판단 · 애매하면 되묻기</text>
+<line x1="173.0" y1="108" x2="173.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="120" y="124" width="106" height="36" rx="8" fill="#1f3d7a" stroke="none" stroke-width="1.3"/>
+<text x="173.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">데이터 조회</text>
+<text x="173.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#c9d6f0">NL2SQL</text>
+<line x1="290.0" y1="108" x2="290.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="237" y="124" width="106" height="36" rx="8" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
+<text x="290.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#4b515d">문서 검색</text>
+<text x="290.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#8a909b">RAG</text>
+<line x1="407.0" y1="108" x2="407.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="354" y="124" width="106" height="36" rx="8" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
+<text x="407.0" y="147" text-anchor="middle" font-size="12" font-weight="800" fill="#4b515d">보고서 생성</text>
+<rect x="60" y="182" width="500" height="200" rx="14" fill="#fbfaf4" stroke="#f2a900" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="215" y="170" width="210" height="24" rx="12" fill="#f2a900"/>
+<text x="320" y="187" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2b2000">직접 설계한 4계층 온톨로지</text>
+<line x1="173" y1="160" x2="173" y2="200" stroke="#1f3d7a" stroke-width="2" marker-end="url(#ah)"/>
+<polygon points="140,204 520,204 490,236 110,236" fill="#1f3d7a"/>
+<rect x="110" y="236" width="380" height="7" fill="#1f3d7a" opacity="0.6"/>
+<text x="315.0" y="225" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">개념 (Concept Layer)</text>
+<circle cx="511.0" cy="220.0" r="3" fill="#1f3d7a"/><line x1="511.0" y1="220.0" x2="600" y2="220.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="217.0" font-size="14.5" font-weight="800" fill="#151922">설비 계층과 현장 규칙</text>
+<text x="610" y="235.0" font-size="12" fill="#4b515d">"DGA 진단은 유입식 변압기에만"</text>
+<polygon points="140,249 520,249 490,281 110,281" fill="#2e5aa8"/>
+<rect x="110" y="281" width="380" height="7" fill="#2e5aa8" opacity="0.6"/>
+<text x="315.0" y="270" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">계산 규칙 (Metric Layer)</text>
+<circle cx="511.0" cy="265.0" r="3" fill="#2e5aa8"/><line x1="511.0" y1="265.0" x2="600" y2="265.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="262.0" font-size="14.5" font-weight="800" fill="#151922">현장이 쓰는 계산 방식</text>
+<text x="610" y="280.0" font-size="12" fill="#4b515d">"정상복귀 알람은 집계에서 제외"</text>
+<polygon points="140,294 520,294 490,326 110,326" fill="#4472c4"/>
+<rect x="110" y="326" width="380" height="7" fill="#4472c4" opacity="0.6"/>
+<text x="315.0" y="315" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">연결 (Mapping Layer)</text>
+<circle cx="511.0" cy="310.0" r="3" fill="#4472c4"/><line x1="511.0" y1="310.0" x2="600" y2="310.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="307.0" font-size="14.5" font-weight="800" fill="#151922">현장 용어를 DB에 연결</text>
+<text x="610" y="325.0" font-size="12" fill="#4b515d">월별로 나뉜 표까지 자동 연결</text>
+<polygon points="140,339 520,339 490,371 110,371" fill="#7f9ad6"/>
+<rect x="110" y="371" width="380" height="7" fill="#7f9ad6" opacity="0.6"/>
+<text x="315.0" y="360" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">실제 데이터 (Physical Layer)</text>
+<circle cx="511.0" cy="355.0" r="3" fill="#7f9ad6"/><line x1="511.0" y1="355.0" x2="600" y2="355.0" stroke="#c4cad4" stroke-width="1.5"/>
+<text x="610" y="352.0" font-size="14.5" font-weight="800" fill="#151922">설비 이름은 매번 DB에서 확인</text>
+<text x="610" y="370.0" font-size="12" fill="#4b515d">새로 등록된 설비도 바로 인식</text>
+<line x1="300" y1="382" x2="300" y2="398" stroke="#8a909b" stroke-width="2" marker-end="url(#ah)"/>
+<path d="M266,408 v22 a34,8 0 0 0 68,0 v-22" fill="#eef1f6" stroke="#4b515d" stroke-width="1.5"/>
+<ellipse cx="300" cy="408" rx="34" ry="8" fill="#fff" stroke="#4b515d" stroke-width="1.5"/>
+<text x="300" y="430" text-anchor="middle" font-size="12" font-weight="800" fill="#151922">설비 DB</text>
+</g>
+<rect x="0" y="58" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="72" font-size="13" font-weight="800" fill="#151922">대화 흐름 설계</text>
+<text x="12" y="92" font-size="11" fill="#4b515d">질문 의도를 판단해</text>
+<text x="12" y="108" font-size="11" fill="#4b515d">담당 에이전트로 연결합니다</text>
+<rect x="0" y="196" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="210" font-size="13" font-weight="800" fill="#151922">규칙 기반 조회문 생성</text>
+<text x="12" y="230" font-size="11" fill="#4b515d">AI는 질문의 뜻을 파악하고</text>
+<text x="12" y="246" font-size="11" fill="#4b515d">조회문은 온톨로지 규칙대로 만듭니다</text>
+<rect x="0" y="296" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="310" font-size="13" font-weight="800" fill="#151922">규칙 관리</text>
+<text x="12" y="330" font-size="11" fill="#4b515d">새 현장 규칙을 관리 화면에서</text>
+<text x="12" y="346" font-size="11" fill="#4b515d">추가하면 바로 반영됩니다</text>
+</svg></div>
+      <p class="figcap">현장 규칙을 담은 온톨로지 위에서 데이터를 조회해, 폐쇄망용 경량 모델로도 정확한 답을 냅니다.</p>
     </div>
   </section>
 
@@ -254,7 +291,102 @@
               <li>제각각인 판정 이력 문서는 Vision이 판독하고 계층 · 상속 · 검산은 코드가 담당, 현업 확정 등급만 검색 근거로 사용</li>
               <li>비개발 현업이 자연어로 쓰는 업무 도구에 플러그인으로 배포, 클라우드 검색 서버는 팀원과 협업</li>
               <li>2026 LS Future Day 우수상</li>
-            </ul></div>
+            </ul>
+            <div class="figure"><svg viewBox="0 0 1000 452" style="width:100%; min-width:760px; height:auto; display:block" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif">
+<defs><marker id="ah2" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a909b"/></marker></defs><g transform="translate(-40,0)">
+<circle cx="560" cy="14" r="8" fill="#4b515d"/><path d="M546,40 a14,13 0 0 1 28,0 z" fill="#4b515d"/>
+<text x="584" y="32" font-size="12.5" font-weight="700" fill="#151922">현업 검토 담당자</text>
+<line x1="560" y1="44" x2="560" y2="60" stroke="#8a909b" stroke-width="2" marker-end="url(#ah2)"/>
+<text x="568" y="56" font-size="10.5" fill="#4b515d">대화 · 사양서 업로드</text>
+<rect x="390" y="62" width="340" height="46" rx="12" fill="#f1ecfc" stroke="#6a4bbf" stroke-width="1.8"/>
+<text x="560" y="82" text-anchor="middle" font-size="14.5" font-weight="800" fill="#6a4bbf">UL 사양서 검토 AI Agent</text>
+<text x="560" y="99" text-anchor="middle" font-size="11" fill="#4b515d">요청 판단 · 조항별 검토 진행</text>
+<text x="745" y="82" font-size="10.5" fill="#8a909b">현업 업무 도구에</text><text x="745" y="97" font-size="10.5" fill="#8a909b">플러그인으로 배포</text>
+<line x1="443.0" y1="108" x2="443.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="390" y="124" width="106" height="36" rx="8" fill="#1f3d7a" stroke="none" stroke-width="1.3"/>
+<text x="443.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">문서 판독</text>
+<text x="443.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#c9d6f0">Vision</text>
+<line x1="560.0" y1="108" x2="560.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="507" y="124" width="106" height="36" rx="8" fill="#1f3d7a" stroke="none" stroke-width="1.3"/>
+<text x="560.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">등급 추천</text>
+<text x="560.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#c9d6f0">판정 이력 검색</text>
+<line x1="677.0" y1="108" x2="677.0" y2="124" stroke="#8a909b" stroke-width="1.6"/>
+<rect x="624" y="124" width="106" height="36" rx="8" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
+<text x="677.0" y="140" text-anchor="middle" font-size="12" font-weight="800" fill="#4b515d">근거 제시</text>
+<text x="677.0" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#8a909b">원본 연결</text>
+<rect x="270" y="182" width="580" height="208" rx="14" fill="#fbfaf4" stroke="#f2a900" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="625" y="170" width="210" height="24" rx="12" fill="#f2a900"/>
+<text x="730" y="187" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2b2000">직접 설계한 판독 · 추천 엔진</text>
+<line x1="443" y1="160" x2="443" y2="206" stroke="#1f3d7a" stroke-width="2" marker-end="url(#ah2)"/>
+<line x1="560" y1="160" x2="560" y2="196" stroke="#1f3d7a" stroke-width="2" marker-end="url(#ah2)"/>
+<rect x="290" y="214" width="36" height="44" rx="4" fill="#fff" stroke="#4b515d" stroke-width="1.2"/>
+<rect x="296" y="209" width="36" height="44" rx="4" fill="#fff" stroke="#4b515d" stroke-width="1.2"/>
+<rect x="302" y="204" width="36" height="44" rx="4" fill="#fff" stroke="#4b515d" stroke-width="1.2"/>
+<line x1="308" y1="216" x2="332" y2="216" stroke="#c4cad4" stroke-width="2"/><line x1="308" y1="224" x2="326" y2="224" stroke="#c4cad4" stroke-width="2"/>
+<circle cx="327" cy="238" r="7" fill="none" stroke="#c2412d" stroke-width="1.5"/><text x="327" y="242" text-anchor="middle" font-size="9" font-weight="800" fill="#c2412d">E</text>
+<text x="314" y="272" text-anchor="middle" font-size="10" fill="#4b515d">과거 판정 문서</text>
+<line x1="346" y1="229" x2="384" y2="229" stroke="#8a909b" stroke-width="2" marker-end="url(#ah2)"/>
+<rect x="388" y="208" width="120" height="44" rx="9" fill="#f1ecfc" stroke="#6a4bbf" stroke-width="1.8"/>
+<rect x="476" y="214" width="26" height="15" rx="7.5" fill="#6a4bbf"/><text x="489" y="225" text-anchor="middle" font-size="9" font-weight="800" fill="#fff">AI</text>
+<text x="398" y="229" font-size="13" font-weight="800" fill="#151922">AI 판독</text>
+<text x="398" y="245" font-size="10.5" fill="#4b515d">조항 · 판정 표시 읽기</text>
+<line x1="510" y1="230" x2="546" y2="230" stroke="#8a909b" stroke-width="2" marker-end="url(#ah2)"/>
+<rect x="550" y="208" width="130" height="44" rx="9" fill="#e9f0fc" stroke="#2b62c4" stroke-width="1.8"/>
+<rect x="648" y="214" width="26" height="15" rx="7.5" fill="#2b62c4"/><text x="661" y="225" text-anchor="middle" font-size="9" font-weight="800" fill="#fff">코드</text>
+<text x="560" y="229" font-size="13" font-weight="800" fill="#151922">코드 검증</text>
+<text x="560" y="245" font-size="10.5" fill="#4b515d">계층 · 상속 · 규칙 확인</text>
+<path d="M735,212 h34 a4,4 0 0 1 4,4 v32 h-34 a4,4 0 0 1 -4,-4 z" fill="#1f3d7a"/><rect x="739" y="244" width="34" height="5" fill="#c9d6f0"/>
+<line x1="743" y1="222" x2="763" y2="222" stroke="#fff" stroke-width="1.6"/><line x1="743" y1="229" x2="759" y2="229" stroke="#fff" stroke-width="1.6"/>
+<text x="752" y="268" text-anchor="middle" font-size="11" font-weight="800" fill="#151922">판정 규칙표</text>
+<text x="752" y="282" text-anchor="middle" font-size="9.5" fill="#4b515d">기준을 한 곳에서 관리</text>
+<line x1="729" y1="230" x2="684" y2="230" stroke="#8a909b" stroke-width="2" marker-end="url(#ah2)"/>
+<line x1="615" y1="252" x2="615" y2="280" stroke="#8a909b" stroke-width="2" marker-end="url(#ah2)"/>
+<rect x="420" y="282" width="270" height="44" rx="10" fill="#e8f5ec" stroke="#2f8a4e" stroke-width="2"/>
+<circle cx="443" cy="304" r="12" fill="#2f8a4e"/><path d="M437,304 l4,4 l8,-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="463" y="301" font-size="13" font-weight="800" fill="#2f8a4e">현업 확정 판정만 통과</text>
+<text x="463" y="317" font-size="10.5" fill="#4b515d">틀린 추천보다 추천 없음</text>
+<line x1="615" y1="326" x2="615" y2="342" stroke="#8a909b" stroke-width="2" marker-end="url(#ah2)"/>
+<rect x="430" y="344" width="250" height="34" rx="9" fill="#f3f4f7" stroke="#c4cad4" stroke-width="1.3"/>
+<text x="445" y="366" font-size="12" font-weight="800" fill="#4b515d">판정 이력 검색</text>
+<text x="540" y="366" font-size="10" fill="#8a909b">Azure AI Search · 팀원 협업</text>
+<line x1="615" y1="378" x2="615" y2="404" stroke="#8a909b" stroke-width="2" marker-end="url(#ah2)"/>
+<rect x="290" y="406" width="560" height="40" rx="10" fill="#fff" stroke="#151922" stroke-width="1.6"/>
+<text x="306" y="431" font-size="12" font-weight="800" fill="#151922">새 고객 사양서</text>
+<text x="410" y="431" font-size="11" fill="#4b515d">2.1 Enclosure</text>
+<rect x="490" y="417" width="18" height="18" rx="4" fill="#2f8a4e"/><text x="499" y="430" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">C</text>
+<rect x="512" y="418" width="30" height="16" rx="8" fill="#eef1f6"/><text x="527" y="430" text-anchor="middle" font-size="9.5" fill="#4b515d">근거</text>
+<text x="555" y="431" font-size="11" fill="#4b515d">2.2 Busbar</text>
+<rect x="635" y="417" width="18" height="18" rx="4" fill="#d9822b"/><text x="644" y="430" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">D</text>
+<rect x="657" y="418" width="30" height="16" rx="8" fill="#eef1f6"/><text x="672" y="430" text-anchor="middle" font-size="9.5" fill="#4b515d">근거</text>
+<text x="700" y="431" font-size="11" fill="#4b515d">2.4 Metering</text>
+<rect x="780" y="417" width="18" height="18" rx="4" fill="#c2412d"/><text x="789" y="430" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">E</text>
+<rect x="802" y="418" width="30" height="16" rx="8" fill="#eef1f6"/><text x="817" y="430" text-anchor="middle" font-size="9.5" fill="#4b515d">근거</text>
+<rect x="862" y="404" width="12" height="12" rx="3" fill="#2f8a4e"/><text x="868" y="413.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">C</text>
+<text x="879" y="414" font-size="10" fill="#4b515d"><tspan font-weight="800" fill="#151922">Comply</tspan> 사양 충족</text>
+<rect x="862" y="419" width="12" height="12" rx="3" fill="#d9822b"/><text x="868" y="428.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">D</text>
+<text x="879" y="429" font-size="10" fill="#4b515d"><tspan font-weight="800" fill="#151922">Deviation</tspan> 일부 차이</text>
+<rect x="862" y="434" width="12" height="12" rx="3" fill="#c2412d"/><text x="868" y="443.5" text-anchor="middle" font-size="8.5" font-weight="800" fill="#fff">E</text>
+<text x="879" y="444" font-size="10" fill="#4b515d"><tspan font-weight="800" fill="#151922">Exception</tspan> 대응 예외</text>
+</g>
+<rect x="0" y="60" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="74" font-size="13" font-weight="800" fill="#151922">검토 흐름 설계</text>
+<text x="12" y="94" font-size="11" fill="#4b515d">사양서를 조항별로 나눠</text>
+<text x="12" y="110" font-size="11" fill="#4b515d">등급과 근거를 함께 제시합니다</text>
+<rect x="0" y="200" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="214" font-size="13" font-weight="800" fill="#151922">AI와 코드의 역할 분리</text>
+<text x="12" y="234" font-size="11" fill="#4b515d">AI는 문서를 읽고</text>
+<text x="12" y="250" font-size="11" fill="#4b515d">검증은 코드가 맡습니다</text>
+<rect x="0" y="280" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="294" font-size="13" font-weight="800" fill="#151922">확정된 판정만 근거로</text>
+<text x="12" y="314" font-size="11" fill="#4b515d">현업이 확정한 판정만</text>
+<text x="12" y="330" font-size="11" fill="#4b515d">추천 근거로 씁니다</text>
+<rect x="0" y="370" width="3.5" height="56" rx="1.5" fill="#f2a900"/>
+<text x="12" y="384" font-size="13" font-weight="800" fill="#151922">정확한 근거 연결</text>
+<text x="12" y="404" font-size="11" fill="#4b515d">조항 번호가 정확히 일치할 때만</text>
+<text x="12" y="420" font-size="11" fill="#4b515d">근거를 연결합니다</text>
+</svg></div>
+      <p class="figcap">AI는 문서를 읽고 코드가 검증해, 현업이 확정한 판정만 근거로 조항별 등급을 추천합니다.</p>
+</div>
         </div>
       </div>
 
@@ -283,7 +415,48 @@
             <ul>
               <li>자동화 엔지니어링 고객 기술지원 사이트 <a href="https://sol.ls-electric.com/kr/ko/main" target="_blank" rel="noopener">솔루션 스퀘어</a>의 생성형 AI RAG 챗봇(초·중급 기술 문의) 개발 및 베타 오픈</li>
               <li>회사의 생성형 AI 도입 사례로 <a href="#press">언론 보도</a></li>
-            </ul></div>
+            </ul>
+            <div class="figure"><svg viewBox="0 0 1000 400" style="width:100%; min-width:760px; height:auto; display:block" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo, Noto Sans KR, sans-serif"><defs><marker id="aha" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a909b"/></marker></defs>
+<rect x="0" y="20" width="250" height="360" rx="14" fill="#fff" stroke="#dfe2e8" stroke-width="1.5"/><rect x="0" y="20" width="250" height="32" rx="14" fill="#f5f6f8"/><rect x="0" y="40" width="250" height="12" fill="#f5f6f8"/>
+<circle cx="18" cy="36" r="4" fill="#d6dae2"/><circle cx="31" cy="36" r="4" fill="#d6dae2"/><circle cx="44" cy="36" r="4" fill="#d6dae2"/><text x="58" y="40" font-size="11" font-weight="700" fill="#4b515d">기술지원 챗봇</text>
+<rect x="44" y="68" width="192" height="32" rx="14" fill="#1f3d7a"/><text x="140" y="89" text-anchor="middle" font-size="12" fill="#fff">G100 파라미터 초기화 방법?</text>
+<rect x="14" y="112" width="222" height="210" rx="12" fill="#fff" stroke="#dfe2e8"/>
+<text x="28" y="138" font-size="13" font-weight="800" fill="#2b62c4">G100 파라미터 초기화 방법</text>
+<text x="28" y="162" font-size="11.5" font-weight="400" fill="#4b515d">모든 설정을 공장 출하 값으로</text>
+<text x="28" y="186" font-size="11.5" font-weight="400" fill="#4b515d">변경합니다.</text>
+<text x="28" y="210" font-size="11.5" font-weight="800" fill="#151922">1. 드라이브 그룹 93 코드 이용</text>
+<text x="28" y="234" font-size="11.5" font-weight="400" fill="#4b515d">· 그룹의 0 코드로 이동</text>
+<text x="28" y="258" font-size="11.5" font-weight="400" fill="#4b515d">· [ENT] 키를 눌러 설정</text>
+<rect x="28" y="284" width="150" height="24" rx="12" fill="none" stroke="#1f3d7a" stroke-width="1.4"/><text x="103" y="300" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1f3d7a">근거: G100 사용설명서</text>
+<text x="125" y="350" text-anchor="middle" font-size="11" fill="#8a909b">실제 화면 내용을 다시 그림</text>
+<rect x="320" y="50" width="80" height="104" rx="6" fill="#fff" stroke="#9aa1ad" stroke-width="1.4"/><rect x="400" y="64" width="12" height="18" rx="2" fill="#2b62c4"/><rect x="400" y="88" width="12" height="18" rx="2" fill="#6a4bbf"/><rect x="400" y="112" width="12" height="18" rx="2" fill="#2f8a4e"/>
+<line x1="330" y1="70" x2="388" y2="70" stroke="#d6dae2" stroke-width="3"/>
+<line x1="330" y1="85" x2="388" y2="85" stroke="#d6dae2" stroke-width="3"/>
+<line x1="330" y1="100" x2="388" y2="100" stroke="#d6dae2" stroke-width="3"/>
+<line x1="330" y1="115" x2="388" y2="115" stroke="#d6dae2" stroke-width="3"/>
+<line x1="330" y1="130" x2="388" y2="130" stroke="#d6dae2" stroke-width="3"/>
+<text x="366" y="182" text-anchor="middle" font-size="14.5" font-weight="800" fill="#151922">사용설명서</text>
+<line x1="422" y1="102" x2="452" y2="102" stroke="#8a909b" stroke-width="2" marker-end="url(#aha)"/>
+<path d="M560 70 V84 M560 84 H508 V100 M560 84 H612 V100 M612 126 V138" stroke="#9aa1ad" stroke-width="1.5" fill="none"/>
+<rect x="514" y="44" width="92" height="26" rx="6" fill="#fff" stroke="#2b62c4" stroke-width="1.4"/><text x="560" y="61" text-anchor="middle" font-size="11" font-weight="700" fill="#151922">G100 매뉴얼</text><rect x="462" y="100" width="92" height="26" rx="6" fill="#fff" stroke="#2b62c4" stroke-width="1.4"/><text x="508" y="117" text-anchor="middle" font-size="11" font-weight="700" fill="#151922">1. 기본사항</text><rect x="566" y="100" width="92" height="26" rx="6" fill="#fff" stroke="#2b62c4" stroke-width="1.4"/><text x="612" y="117" text-anchor="middle" font-size="11" font-weight="700" fill="#151922">2. 파라미터</text><rect x="566" y="138" width="92" height="26" rx="6" fill="#2b62c4" stroke="#2b62c4" stroke-width="1.4"/><text x="612" y="155" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2.3 초기화</text>
+<text x="560" y="196" text-anchor="middle" font-size="14.5" font-weight="800" fill="#151922">목차와 표를 그대로 보존</text>
+<line x1="668" y1="102" x2="710" y2="102" stroke="#8a909b" stroke-width="2" marker-end="url(#aha)"/>
+<polygon points="718,52 862,52 808,142 772,142" fill="#e8f0fc" stroke="#2b62c4" stroke-width="1.6"/>
+<text x="790" y="76" text-anchor="middle" font-size="11.5" fill="#4b515d">전체 제품 문서</text><rect x="750" y="150" width="80" height="24" rx="12" fill="#2b62c4"/><text x="790" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">인버터 › G100</text>
+<text x="790" y="198" text-anchor="middle" font-size="14.5" font-weight="800" fill="#151922">질문한 제품으로 범위 축소</text>
+<line x1="790" y1="208" x2="790" y2="236" stroke="#8a909b" stroke-width="2" marker-end="url(#aha)"/>
+<rect x="746" y="240" width="120" height="44" rx="8" fill="#fff" stroke="#c4cad4" stroke-width="1.2"/>
+<rect x="738" y="250" width="120" height="44" rx="8" fill="#fff" stroke="#9aa1ad" stroke-width="1.2"/>
+<rect x="730" y="260" width="120" height="44" rx="8" fill="#fff" stroke="#1f3d7a" stroke-width="2"/>
+<circle cx="750" cy="282" r="11" fill="#1f3d7a"/><text x="750" y="286" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">1</text><line x1="768" y1="282" x2="838" y2="282" stroke="#d6dae2" stroke-width="4"/>
+<text x="790" y="352" text-anchor="middle" font-size="14.5" font-weight="800" fill="#151922">가장 맞는 근거 선택</text>
+<line x1="716" y1="280" x2="648" y2="280" stroke="#8a909b" stroke-width="2" marker-end="url(#aha)"/>
+<rect x="480" y="240" width="160" height="34" rx="16" fill="#e7f5ec" stroke="#2f8a4e" stroke-width="1.5"/><path d="M498 257 l6 6 l12 -12" stroke="#2f8a4e" stroke-width="3" fill="none" stroke-linecap="round"/><text x="568" y="262" text-anchor="middle" font-size="12" font-weight="700" fill="#2f8a4e">근거와 함께 답변</text>
+<rect x="480" y="286" width="160" height="34" rx="16" fill="#fcece8" stroke="#c2412d" stroke-width="1.5"/><path d="M494 296 l12 12 M506 296 l-12 12" stroke="#c2412d" stroke-width="3" stroke-linecap="round"/><text x="568" y="308" text-anchor="middle" font-size="12" font-weight="700" fill="#c2412d">근거 없으면 답하지 않음</text>
+<text x="560" y="352" text-anchor="middle" font-size="14.5" font-weight="800" fill="#151922">믿을 수 있는 답만 전달</text>
+</svg></div>
+      <p class="figcap">사용설명서 구조를 살린 검색으로, 근거가 있을 때만 답합니다.</p>
+</div>
           <div class="proj"><span class="t">Product Lens 제품 정보 스마트 검색</span><span class="d">24.9 ~ 24.10</span>
             <ul>
               <li>글로벌 사업 성과 향상을 위한 Global DX Ideation의 일환으로 AI 기반 제품 정보 서비스 개발</li>
